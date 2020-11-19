@@ -24,7 +24,8 @@ function ImageMarker() {
 
 	const onClick = async (canvasRef: any) => {
 		if (canvasRef.current) {
-			const base64Image = canvasRef.current.toDataURL('image/jpeg')
+			// Split off metadata for google vision api
+			const base64Image = canvasRef.current.toDataURL("image/png").split(",")[1];
 			const { data, error } = await makeApiRequest(base64Image)
 			console.log('%c data: ', 'color: mediumseagreen; font-weight: bold;', data)
 		}
